@@ -3,15 +3,13 @@
 	background-color: gray;
     min-height: 970px !important;
     width: 100%;
-    overflow: hidden;
-    background: url(../img/image.jpg) top center no-repeat #000;
+    background: url(../img/fon.jpg) #000;
 }
 
 .main-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	flex-wrap: wrap;
 	margin: 75px 200px;
 }
 
@@ -25,7 +23,7 @@
 
 .menu-wrap {
 	width: 200px;
-    background: #333;
+    background: #145b8df2;
     font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
     font-size: 12px;
 }
@@ -47,7 +45,7 @@
     text-decoration: none;
     text-transform: uppercase;
     border-right: 4px solid #ed1d24;
-    color: #fff;
+    font-weight: bold;
 }
 
 .active {
@@ -55,7 +53,47 @@
 }
 
 .main-content {
-	background-color: #333333;
-	height: 800px;
-    width: 800px;
+	background-color: #0d3a5bc9;
+	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    padding: 20px;
+    min-height: 800px;
+    min-width: 800px;  
+    margin-left: 50px; 
+}
+
+.hero-wrap {
+	padding: 10px;
+    background-color: #eabcbc2b;
+    padding: 0;
+    text-align: center;
+    margin: 20px;
+    border: solid 1px #ed1d24;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+	    margin: 1px;
+}
+
+.card-body__headline {
+	font-size: 18px;
+    text-align: left;
+    color: #fff;
+    margin: 15px 5px;
+    font-family: fantasy;
+    letter-spacing: 1px;
+}
+
+.card-body__comicurl {
+	text-decoration: none;
+	color: #fff;
+    text-transform: uppercase;
+}
+
+.comic-url {
+	background-color: #ed1d24;
+    padding: 10px 0px;
 }
