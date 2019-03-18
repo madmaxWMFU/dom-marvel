@@ -1,41 +1,49 @@
 .fonImg {
-	margin: 0;
-	background-color: gray;
+    margin: 0;
+    background-color: gray;
     min-height: 970px !important;
     width: 100%;
     background: url(../img/fon.jpg) #000;
 }
 
 .main-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	margin: 75px 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 75px 200px;
 }
 
 .logo-wrap {
-	height: 60px;
-	background-color: black;
-	text-align: center;
-	background: url(../img/marvel_logo.png) no-repeat;
+    height: 60px;
+    background-color: black;
+    text-align: center;
+    background: url(../img/marvel_logo.png) no-repeat;
     background-size: 200px 60px;
 }
 
+.showLoad {
+    display: block;
+}
+
+.hideLoad {
+    display: none;
+}
+
 .menu-wrap {
-	width: 200px;
+    width: 200px;
     background: #145b8df2;
     font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
     font-size: 12px;
 }
 
 .menu-wrap ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .menu-wrap ul li:hover {
-	background-color: #ed1d24;
+    background-color: #ed1d24;
 }
 
 .menu-wrap a {
@@ -49,34 +57,54 @@
 }
 
 .active {
-	background-color: #ed1d24;
+    background-color: #ed1d24;
 }
 
 .main-content {
-	background-color: #ffffffd4;
-	display: flex;
+    background-color: #ffffffd4;
+    display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     padding: 20px;
-    min-height: 800px;
-    min-width: 800px;  
-    margin-left: 50px; 
+    min-width: 800px;
+    min-height: 550px;
+    margin-left: 50px;
     border: solid 4px #de5c41;
 }
 
+.load-data {
+    background: url('../img/cap.png');
+    animation: load-data 2s infinite linear;
+    background-size: 40px 40px;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    top: 200px;
+}
+
+@keyframes load-data {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(1turn)
+    }
+}
+
 .hero-wrap {
-	padding: 10px;
-    background-color: #295f8d;
+    padding: 10px;
+    background-color: #145b8ddb;
     padding: 0;
     text-align: center;
     margin: 20px;
     display: flex;
     flex-direction: column;
-    max-width: 250px;
+    width: 250px;
+    max-height: 415px;
 }
 
 .card-body__headline {
-	font-size: 1em;
+    font-size: 1em;
     text-align: left;
     color: #fff;
     margin: 15px 5px;
@@ -85,12 +113,41 @@
 }
 
 .card-body__comicurl {
-	text-decoration: none;
-	color: #fff;
+    text-decoration: none;
+    color: #fff;
     text-transform: uppercase;
 }
 
 .comic-url {
-	background-color: #ed1d24;
+    background-color: #ed1d24;
     padding: 10px 0px;
+}
+
+.home-page {
+    position: relative;
+    text-align: center;
+    background-color: #145b8ddb;
+    width: 100%;
+}
+
+.home-page:last-child() {
+    position: absolute;
+    bottom: 25px;
+    width: inherit;
+    text-align: center;
+}
+
+.marvel-title {
+    color: #e0dada;
+}
+
+.marvel-text {
+    padding: 30px 30px 0px 30px;
+    color: #e0dada;
+    font-size: 18px;
+}
+
+.marvel-link {
+    text-decoration: none;
+    color: #fff;
 }
