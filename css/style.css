@@ -53,7 +53,7 @@
 }
 
 .main-content {
-	background-color: #0d3a5bc9;
+	background-color: #ffffffd4;
 	display: flex;
     justify-content: space-around;
     flex-wrap: wrap; 
@@ -61,22 +61,18 @@
     min-height: 800px;
     min-width: 800px;  
     margin-left: 50px; 
+    border: solid 4px #de5c41;
 }
 
 .hero-wrap {
 	padding: 10px;
-    background-color: #eabcbc2b;
+    background-color: #295f8d;
     padding: 0;
     text-align: center;
     margin: 20px;
-    border: solid 1px #ed1d24;
     display: flex;
     flex-direction: column;
     max-width: 250px;
-}
-
-img {
-	    margin: 1px;
 }
 
 .card-body__headline {
