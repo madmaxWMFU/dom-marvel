@@ -111,7 +111,7 @@ const drawMainPage = () => {
         <h2 class="marvel-title">Welcom to random list Marvel heros and comics!</h2>
         <p class="marvel-text">I used the Marvel Comics API. This API allows developers everywhere to access information about Marvel's vast library of comics—from what's coming up, to 70 years ago.</p>
         <p class="marvel-text">In the choice of one of the menu items, you will see a random list of ten characters or comics</p>
-        <div><a href="http://marvel.com" class="marvel-link" target="_blanck">Data provided by Marvel. © 2019 MARVEL</a></div>
+        <div class="marvel-link"><a href="http://marvel.com" class="marvel-link" target="_blanck">Data provided by Marvel. © 2019 MARVEL</a></div>
     </div>`;
     main.insertAdjacentHTML("beforeEnd", mainPage);
 }

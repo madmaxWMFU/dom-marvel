@@ -144,11 +144,12 @@
     width: 100%;
 }
 
-.home-page:last-child() {
+.marvel-link {
     position: absolute;
     bottom: 25px;
     width: inherit;
     text-align: center;
+    left: 0;
 }
 
 .marvel-title {
