@@ -6,23 +6,32 @@ menuItem.addEventListener("click", e => {
     switch (e.target.dataset.href) {
         case "home":
             removeItems();
+            document.querySelector(".load-data").classList.toggle("showLoad");
             drawMainPage();
-
+            document.querySelector(".load-data").classList.toggle("showLoad");
             break;
         case "heros":
             removeItems();
+            document.querySelector(".load-data").classList.toggle("showLoad");
             const arrayHero = randomArray('characters');
             Promise.all(arrayHero.map(url =>
                 fetch(url).then(resp => resp.json())
-            )).then(json => json.map(item => drawHero(item.data.results)));
+            )).then(json => {
+                document.querySelector(".load-data").classList.toggle("showLoad");
+                json.map(item => drawHero(item.data.results));
+            });
 
             break;
         case "comics":
             removeItems();
+            document.querySelector(".load-data").classList.toggle("showLoad");
             const arrayComics = randomArray('comics');
             Promise.all(arrayComics.map(url =>
                 fetch(url).then(resp => resp.json())
-            )).then(json => json.map(item => drawComics(item.data.results)));
+            )).then(json => {
+                document.querySelector(".load-data").classList.toggle("showLoad");
+                json.map(item => drawComics(item.data.results));
+            });
 
             break;
     }
