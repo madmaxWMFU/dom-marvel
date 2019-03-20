@@ -106,3 +106,4 @@ const templateWrap = (img, title, link, about) => {
             </div>
         </div>`;
 }
+
