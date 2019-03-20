@@ -6,30 +6,30 @@ menuItem.addEventListener("click", e => {
     switch (e.target.dataset.href) {
         case "home":
             removeItems();
-            document.querySelector(".load-data").classList.toggle("showLoad");
+            showLoad();
             drawMainPage();
-            document.querySelector(".load-data").classList.toggle("showLoad");
+            hideLoad();
             break;
         case "heros":
             removeItems();
-            document.querySelector(".load-data").classList.toggle("showLoad");
+            showLoad();
             const arrayHero = randomArray('characters');
             Promise.all(arrayHero.map(url =>
                 fetch(url).then(resp => resp.json())
             )).then(json => {
-                document.querySelector(".load-data").classList.toggle("showLoad");
+                hideLoad();
                 json.map(item => drawHero(item.data.results));
             });
 
             break;
         case "comics":
             removeItems();
-            document.querySelector(".load-data").classList.toggle("showLoad");
+            showLoad();
             const arrayComics = randomArray('comics');
             Promise.all(arrayComics.map(url =>
                 fetch(url).then(resp => resp.json())
             )).then(json => {
-                document.querySelector(".load-data").classList.toggle("showLoad");
+                hideLoad();
                 json.map(item => drawComics(item.data.results));
             });
 
@@ -37,45 +37,29 @@ menuItem.addEventListener("click", e => {
     }
 });
 
-let randomArray = type => {
-    let arr = [];
-    while (arr.length < 10) {
+const randomArray = type => {
+    let arrayLinks = [];
+    while (arrayLinks.length < 10) {
         let number = Math.floor((Math.random() * 1491) + 1);
-        if (arr.indexOf(number) === -1)
+        if (arrayLinks.indexOf(number) === -1)
             str = `https://gateway.marvel.com/v1/public/${type}?ts=1&limit=1&offset=${number}&apikey=0cc0bbc55224cb8f34ec109ab692c2cb&hash=4e7f342316da627d9a966768f39d0702`;
-        arr.push(str);
+        arrayLinks.push(str);
     }
-    return arr;
+    return arrayLinks;
 }
 
-let removeItems = () => {
-    const allContentItems = document.querySelectorAll(".removeItems");
-    allContentItems.forEach((val, key) => val.remove());
-}
+const removeItems = () => { document.querySelectorAll(".removeItems").forEach((val, key) => val.remove()) }
 
-let drawHero = arrayHero => {
+const showLoad = () => { document.querySelector(".load-data").classList.add("showLoad") }
+
+const hideLoad = () => { document.querySelector(".load-data").classList.remove("showLoad") }
+
+const drawHero = arrayHero => {
     const hero = arrayHero[0];
     let heroName = hero.name;
     let heroImg = `${hero.thumbnail.path}/portrait_incredible.${hero.thumbnail.extension}`;
-    let heroComics = "";
-    hero.urls.forEach(val => {
-        if (val.type == "comiclink")
-            heroComics = val.url;
-    })
-
-    let heroWrap = `
-		<div class="hero-wrap removeItems">
-			<div class="card-thumb-frame">
-				<img src="${heroImg}" />
-			</div>
-			<div class="card-body">
-			    <p class="card-body__headline">${heroName}</p>
-			</div>
-			<div class="comic-url">
-				<a class="card-body__comicurl" href="${heroComics}" target="_blanck">Comics zone</a>
-			</div>
-		</div>`;
-
+    let heroComics = checkUrl(hero.urls, "comiclink");
+    let heroWrap = templateWrap(heroImg, heroName, heroComics, "Comics zone");
     main.insertAdjacentHTML("beforeEnd", heroWrap);
 }
 
@@ -83,35 +67,42 @@ const drawComics = arrayComics => {
     const comics = arrayComics[0];
     let comicsTitle = comics.title;
     let comicsImg = `${comics.thumbnail.path}/portrait_incredible.${comics.thumbnail.extension}`;
-    let linkComics = "";
-    comics.urls.forEach(val => {
-        if (val.type == "detail")
-            linkComics = val.url;
-    })
-
-    let comicsWrap = `
-    	<div class="hero-wrap removeItems">
-    		<div class="card-thumb-frame">
-    			<img src="${comicsImg}" />
-    		</div>
-    		<div class="card-body">
-                <p class="card-body__headline">${comicsTitle}</p>
-    		</div>
-    		<div class="comic-url">
-    			<a class="card-body__comicurl" href="${linkComics}" target="_blanck">Detail</a>
-    		</div>
-    	</div>`;
-
+    let linkComics = checkUrl(comics.urls, "detail");
+    let comicsWrap = templateWrap(comicsImg, comicsTitle, linkComics, "Detail");
     main.insertAdjacentHTML("beforeEnd", comicsWrap);
 }
 
 const drawMainPage = () => {
     let mainPage = `
-    <div class="home-page removeItems">
-        <h2 class="marvel-title">Welcom to random list Marvel heros and comics!</h2>
-        <p class="marvel-text">I used the Marvel Comics API. This API allows developers everywhere to access information about Marvel's vast library of comics—from what's coming up, to 70 years ago.</p>
-        <p class="marvel-text">In the choice of one of the menu items, you will see a random list of ten characters or comics</p>
-        <div class="marvel-link"><a href="http://marvel.com" class="marvel-link" target="_blanck">Data provided by Marvel. © 2019 MARVEL</a></div>
-    </div>`;
+        <div class="home-page removeItems">
+            <h2 class="marvel-title">Welcom to random list Marvel heros and comics!</h2>
+            <p class="marvel-text">I used the Marvel Comics API. This API allows developers everywhere to access information about Marvel's vast library of comics—from what's coming up, to 70 years ago.</p>
+            <p class="marvel-text">In the choice of one of the menu items, you will see a random list of ten characters or comics</p>
+            <div class="marvel-link"><a href="http://marvel.com" class="marvel-link" target="_blanck">Data provided by Marvel. © 2019 MARVEL</a></div>
+        </div>`;
     main.insertAdjacentHTML("beforeEnd", mainPage);
+}
+
+const checkUrl = (arr, type) => {
+    let link;
+    arr.forEach(val => {
+        if (val.type == type)
+            link = val.url;
+    });
+    return link;
+}
+
+const templateWrap = (img, title, link, about) => {
+    return `
+        <div class="hero-wrap removeItems">
+            <div class="card-thumb-frame">
+                <img src="${img}" />
+            </div>
+            <div class="card-body">
+                <p class="card-body__headline">${title}</p>
+            </div>
+            <div class="comic-url">
+                <a class="card-body__comicurl" href="${link}" target="_blanck">${about}</a>
+            </div>
+        </div>`;
 }
